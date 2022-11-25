@@ -1,0 +1,9 @@
+---
+- name: Make sure the boinc-client service unit is running
+  hosts: home
+
+  tasks:
+  - name: Make sure the boinc-client service unit is running
+    ansible.builtin.systemd:
+      state: started
+      name: boinc-client
