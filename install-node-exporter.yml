@@ -1,19 +1,19 @@
 ---
 - name: Install Node Exporter and run it as a service
-  hosts: home
+  hosts: pis
 
   tasks:
   - name: Extract the package
     ansible.builtin.unarchive:
-      src: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-amd64.tar.gz
+      src: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-{{ arch }}64.tar.gz
       dest: /home/stefan
-      creates: /home/stefan/node_exporter-1.4.0.linux-amd64/node_exporter
+      creates: /home/stefan/node_exporter-1.4.0.linux-{{ arch }}64/node_exporter
       remote_src: true
 
   - name: Copy the package to usr/bin
     become: true
     ansible.builtin.copy:
-      src: /home/stefan/node_exporter-1.4.0.linux-amd64/node_exporter
+      src: /home/stefan/node_exporter-1.4.0.linux-{{ arch }}64/node_exporter
       dest: /usr/local/bin/node_exporter
       remote_src: true
 

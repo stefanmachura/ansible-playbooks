@@ -1,6 +1,6 @@
 ---
 - name: Update with Apt
-  hosts: home
+  hosts: pis
   become: true
 
   tasks:

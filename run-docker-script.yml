@@ -1,0 +1,16 @@
+---
+- name: Install Docker on RPi using the convenience script
+  hosts: pis
+  become: true
+
+  tasks:
+  - name: Download conveniece script
+    ansible.builtin.get_url:
+      url: https://get.docker.com
+      dest: /home/stefan/get-docker.sh
+      mode: '777'
+
+  - name: Run the install script
+    ansible.builtin.shell: 
+      cmd: /home/stefan/get-docker.sh
+      
